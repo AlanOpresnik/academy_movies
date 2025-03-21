@@ -1,8 +1,7 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
-import Hamburger from 'hamburger-react'
-import Drawer from './Drawer/Drawer'
+import React from 'react'
+
 import DrawerCustom from './Drawer/Drawer'
 
 const links = [
@@ -17,18 +16,18 @@ const Navbar = () => {
     return (
         <>
 
-            <div className='flex justify-between py-6 items-center font-semibold text-red-700 px-2'>
+            <div className='flex justify-between fixed top-[0px] w-full bg-black opacity-85  z-50 py-6 items-center font-semibold text-white px-2'>
                 <div className='flex items-center gap-2'>
-                    <DrawerCustom />
+                    <DrawerCustom links={links} />
                     <div>
-                        <Link href={'/'}>Movies Gaston</Link>
+                        <Link className='text-sm' href={'/'}>Movies Gaston</Link>
                     </div>
                 </div>
                 <div className='hidden'>
                     <ul>
                         {links.map((l) => (
                             <li key={l.path}>
-                                <Link href={l.path}>
+                                <Link className='opacity-100' href={l.path}>
                                     {l.label}
                                 </Link>
                             </li>
@@ -36,10 +35,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className='flex gap-4 text-sm font-semibold items-center'>
-                    <Link href={'/login'}>
+                    <Link className='text-sm' href={'/login'}>
                         Iniciar Sesion
                     </Link>
-                    <Link href={'/register'}>Registrarse</Link>
+                    <Link className='text-sm' href={'/register'}>Registrarse</Link>
                 </div>
             </div>
         </>

@@ -13,7 +13,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import Hamburger from 'hamburger-react';
 import { useState } from 'react';
 
-export default function DrawerCustom() {
+export default function DrawerCustom({ links }) {
     const [open, setOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false)
 
@@ -25,44 +25,28 @@ export default function DrawerCustom() {
         setIsOpen(!isOpen)
     };
 
-    const onClose = () => {
-        toggleDrawer(false)
-    }
-
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                {links.map((link) => (
+                    <ListItem button key={link.path}>
                         <ListItemButton>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {link.path === '/estrenos' ? <InboxIcon /> : <MailIcon />}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={link.label} />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
             <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
         </Box>
     );
 
     return (
         <div>
-            <Button onClick={toggleDrawer(true)}>
-                <Hamburger color='red' size={20} toggle={toggle} toggled={isOpen} />
+            <Button className='!p-0' onClick={toggleDrawer(true)}>
+                <Hamburger color='red' size={18}  toggle={toggle} toggled={isOpen} />
             </Button>
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}
