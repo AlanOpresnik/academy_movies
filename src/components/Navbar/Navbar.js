@@ -34,7 +34,7 @@ const Navbar = () => {
                         ))}
                     </ul>
                 </div>
-                <div className='flex gap-4 text-sm font-semibold items-center'>
+                <div className='flex gap-4 text-sm font-semibold items-center px-12'>
                     <Link className='text-sm' href={'/login'}>
                         Iniciar Sesion
                     </Link>
