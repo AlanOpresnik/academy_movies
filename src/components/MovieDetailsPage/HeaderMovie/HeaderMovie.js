@@ -1,11 +1,31 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-const HeaderMovie = ({ movie }) => {
-    console.log(movie)
+import TrailerMovie from './TrailerMovie/TrailerMovie';
+import ProvidersMovie from './ProvidersMovie/ProvidersMovie';
+const HeaderMovie = ({ movie, trailerKey, providers }) => {
+    const [open, setOpen] = useState(false)
+
+    const handleOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
     return (
         movie && (
             <header className="relative ">
+                {open && (
+                    <div className='flex justify-center'>
+                        <div className="absolute top-30  w-[1200px] !h-[500px]  z-20">
+                            <div className='absolute bg-red-600 p-4 rounded-full top-0 right-0  cursor-pointer' onClick={handleClose}>
+                                X
+                            </div>
+                            <TrailerMovie trailerKey={trailerKey} />
+                        </div>
+                    </div>
+                )}
                 <div className="w-full relative">
                     <Image
                         className="w-full h-[100vh] object-cover"
@@ -35,7 +55,10 @@ const HeaderMovie = ({ movie }) => {
                         </div>
                         <div className='flex items-center gap-6'>
                             <button className='bg-red-900 px-4 py-2 rounded-full w-fit '>Ver Pelicula</button>
-                            <button className='border px-4 py-2 rounded-full w-fit '>Ver Trailer</button>
+                            <button onClick={handleOpen} className='border px-4 py-2 cursor-pointer rounded-full w-fit '>Ver Trailer</button>
+                        </div>
+                        <div>
+                            <ProvidersMovie providers={providers}/>
                         </div>
                     </div>
                 </div>

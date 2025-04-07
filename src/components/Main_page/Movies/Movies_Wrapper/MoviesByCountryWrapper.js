@@ -3,8 +3,9 @@ import MoviesSwiper from "../Movies_Swiper/MoviesSwiper"
 
 
 
-const MoviesWrapper = async ({category}) => {
-    const movies = await api.getAllMovies(category, 1);
+const MoviesByCountryWrapper = async ({country}) => {
+    const movies = await api.getMovieByCountry(country);
+    console.log(movies)
     return (
         <>
            <MoviesSwiper movies={movies}/>
@@ -12,4 +13,4 @@ const MoviesWrapper = async ({category}) => {
     )
 }
 
-export default MoviesWrapper
+export default MoviesByCountryWrapper
