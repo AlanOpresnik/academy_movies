@@ -36,7 +36,6 @@ const HeaderMovie = ({ movie, trailerKey, providers }) => {
                     />
                     <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
 
-
                     <div className="absolute top-1/2 left-10 -translate-y-1/2 z-10 max-w-[600px] flex flex-col gap-4">
                         <div className="flex gap-2">
                             {movie.genres.map((genre, index) => (
@@ -46,6 +45,7 @@ const HeaderMovie = ({ movie, trailerKey, providers }) => {
                                 </div>
                             ))}
                         </div>
+
                         <h1 className="text-white text-7xl font-bold">{movie.title}</h1>
                         <p>{movie.overview}</p>
                         <div>
@@ -58,7 +58,7 @@ const HeaderMovie = ({ movie, trailerKey, providers }) => {
                             <button onClick={handleOpen} className='border px-4 py-2 cursor-pointer rounded-full w-fit '>Ver Trailer</button>
                         </div>
                         <div>
-                            <ProvidersMovie providers={providers}/>
+                            <ProvidersMovie providers={providers} />
                         </div>
                     </div>
                 </div>

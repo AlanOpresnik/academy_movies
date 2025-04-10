@@ -103,9 +103,27 @@ export const api = {
             if (!response) return new Error(`No hay respuesta`)
             return response.results;
 
-        } catch (error) {   
+        } catch (error) {
             console.log(error)
             return []
         }
     },
+    searchMovies: async (query) => {
+        try {
+            const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${query}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`
+                }
+            }).then((res) => res.json());
+            console.log(query)
+            if (!response) return new Error(`No hay respuesta`)
+
+            return response.results;
+        } catch (error) {
+            console.log(error)
+            return []
+        }
+    }
 };
